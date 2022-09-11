@@ -19,4 +19,3 @@ Install Composer, Create Database, create copy of .env.example file in same dire
 to clear cache
 
 > php artisan cache:clear
-# Restaurant

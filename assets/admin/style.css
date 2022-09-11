@@ -1,0 +1,17 @@
+.column-table {
+  margin: auto;
+}
+
+.column-table td {
+  border: transparent;
+  vertical-align: middle;
+}
+
+.color-box {
+  width: 15px;
+  height: 15px;
+}
+
+.attach_icon {
+  font-size: 60px;
+}

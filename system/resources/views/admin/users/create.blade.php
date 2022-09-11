@@ -1,0 +1,147 @@
+@extends('admin.layouts.app')
+
+@section('styles')
+@endsection
+
+@section('scripts')
+<script src="{{asset('assets/admin/plugins/select2/js/select2.full.min.js')}}"></script>
+  <link rel="stylesheet" href="{{asset('assets/admin/plugins/select2/css/select2.min.css')}}">
+  <link rel="stylesheet" href="{{asset('assets/admin/plugins/select2-bootstrap4-theme/select2-bootstrap4.min.css')}}">
+<script>
+$(function () {
+  })
+</script>
+@endsection
+
+@section("content")
+<div class="card card-primary">
+              <div class="card-header">
+                <h3 class="card-title">{{$params['singular_title']}}</h3>
+                @if ($errors->any())
+                    <div class="alert alert-danger">
+                        <ul>
+                            @foreach ($errors->all() as $error)
+                                <li>{{ $error }}</li>
+                            @endforeach
+                        </ul>
+                    </div>
+                @endif
+              </div>
+              <!-- /.card-header -->
+              <!-- form start -->
+              <form action="{{(isset($row))?route($params['route'].".update",$parm):route($params['route'].'.store')}}" 
+                method="post" 
+                enctype="multipart/form-data">
+                @csrf
+                @if(isset($row))
+                  @method('put')
+                @endif
+                <div class="card-body">
+                  <div class="form-group">
+                    <label for="title">Name</label>
+                    <input type="text" class="form-control @error('name') is-invalid @enderror" 
+                    id="name" 
+                    name="name"
+                    required
+                    placeholder="Enter Name"
+                    value="{{ old('name',(isset($row))?$row->name:"") }}"
+                    />
+                    @error('name')
+                        <span class="invalid-feedback" role="alert">
+                            <strong>{{ $message }}</strong>
+                        </span>
+                    @enderror
+                  </div>
+                  <div class="form-group">
+                    <label for="Email">Email</label>
+                    <input type="text" class="form-control @error('email') is-invalid @enderror" 
+                    id="email" 
+                    name="email"
+                    type="email"
+                    required
+                    placeholder="Enter Email"
+                    value="{{ old('email',(isset($row))?$row->email:"") }}"
+                    />
+                    @error('email')
+                        <span class="invalid-feedback" role="alert">
+                            <strong>{{ $message }}</strong>
+                        </span>
+                    @enderror
+                  </div>
+                  <div class="form-group">
+                    <label for="title">Password</label>
+                    <input type="password" class="form-control @error('password') is-invalid @enderror" 
+                    id="password" 
+                    name="password"
+                    required
+                    placeholder="Enter Password"
+                    value="{{ old('password') }}"
+                    />
+                    @error('password')
+                        <span class="invalid-feedback" role="alert">
+                            <strong>{{ $message }}</strong>
+                        </span>
+                    @enderror
+                  </div>
+                  <div class="form-group">
+                    <label for="title">Confirm Password</label>
+                    <input type="password" class="form-control @error('password') is-invalid @enderror" 
+                    id="password" 
+                    name="password_confirmation"
+                    required
+                    placeholder="Confirm Password"
+                    value="{{ old('password') }}"
+                    />
+                    @error('name')
+                        <span class="invalid-feedback" role="alert">
+                            <strong>{{ $message }}</strong>
+                        </span>
+                    @enderror
+                  </div>
+                  {{-- <div class="form-group">
+                    <label>Role</label>
+                    <select name="role" class="form-control select2 @error('role') is-invalid @enderror" style="width: 100%;">
+                      <option selected disabled>Select Role</option>
+                      @foreach($roles as $role)
+                      <option {{ old('role',(isset($row)&&$row->role())?$row->role()->id:"")==$role->id?"selected":"" }} 
+                        value="{{$role->id}}">{{$role->name}}</option>
+                      @endforeach
+                    </select>
+                    @error('role')
+                        <span class="invalid-feedback" role="alert">
+                            <strong>{{ $message }}</strong>
+                        </span>
+                    @enderror
+                  </div> --}}
+                  <div class="form-group">
+                    <label for="avatar">Profile Image</label>
+                    <div class="input-group">
+                      <div class="custom-file">
+                        <input 
+                        type="file" 
+                        name="attachment" 
+                        accept="application/pdf" 
+                        value="{{ old('avatar') }}" 
+                        class="custom-file-input" 
+                        id="avatar">
+                        <label class="custom-file-label" for="avatar">{{ old('attachment',"Choose file") }}</label>
+                      </div>
+                      {{-- <div class="input-group-append">
+                        <span class="input-group-text">Upload</span>
+                      </div> --}}
+                    </div>
+                    @error('avatar')
+                        <span class="invalid-feedback" role="alert">
+                            <strong>{{ $message }}</strong>
+                        </span>
+                    @enderror
+                  </div>
+                </div>
+                <!-- /.card-body -->
+
+                <div class="card-footer">
+                  <button type="submit" class="btn btn-primary">Submit</button>
+                </div>
+              </form>
+            </div>
+@endsection
