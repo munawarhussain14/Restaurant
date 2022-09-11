@@ -19,3 +19,15 @@ Install Composer, Create Database, create copy of .env.example file in same dire
 to clear cache
 
 > php artisan cache:clear
+
+## Signin Account
+
+### Super Admin
+
+> email: superadmin@gmail.com  
+> password: 12345678
+
+### Admin
+
+> email: admin@gmail.com  
+> password: 12345678
