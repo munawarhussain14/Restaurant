@@ -5,11 +5,13 @@
 @endpush
 
 @push('scripts')
-
+<script src="{{asset('assets/admin/plugins/moment/moment.min.js')}}"></script>
+<script src="{{asset('assets/admin/plugins/inputmask/jquery.inputmask.min.js')}}"></script>
 
 <script>
   $(function () {
 
+    $('[data-mask]').inputmask();
     $('.image-file').change(function() {
         var fileName = this.files[0].name;
         $(this).parent().find(".custom-file-label").text(fileName);
@@ -59,7 +61,7 @@
     @endif
       <div class="card-body">
         <div class="row">
-          <div class="col-12">
+          <div class="col-6">
             <div class="form-group">
               <label for="name">Name</label>
               <input type="text" class="form-control @error('name') is-invalid @enderror" 
@@ -74,6 +76,30 @@
                       <strong>{{ $message }}</strong>
                   </span>
               @enderror
+            </div>
+          </div>
+          <div class="col-6">
+            <div class="form-group">
+              <label>Phone No</label>
+
+              <div class="input-group">
+                <div class="input-group-prepend">
+                  <span class="input-group-text"><i class="fas fa-phone"></i></span>
+                </div>
+                <input 
+                type="text" 
+                class="form-control" 
+                required
+                name="phone"
+                value="{{ old('phone',(isset($row))?$row->phone:"") }}"
+                data-inputmask='"mask": "(+999) 999999999"' data-mask/>
+              </div>
+              @error('phone')
+                  <span class="invalid-feedback" role="alert">
+                      <strong>{{ $message }}</strong>
+                  </span>
+              @enderror
+              <!-- /.input group -->
             </div>
           </div>
           <div class="col-12">

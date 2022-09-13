@@ -11,10 +11,17 @@
             <!-- form start -->
             <div class="card-body">
                 <div class="row">
-                    <div class="col-12">
+                    <div class="col-6">
                         <div class="form-group">
                             <label for="name">Name</label>
                             <p>{{$row->name}}</p>
+                        </div>
+                        <hr>
+                    </div>
+                    <div class="col-6">
+                        <div class="form-group">
+                            <label for="phone">Phone No</label>
+                            <p>{{$row->phone}}</p>
                         </div>
                         <hr>
                     </div>

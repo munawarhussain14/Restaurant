@@ -8,6 +8,7 @@ use App\Models\Restaurant;
 use App\Models\Permission;
 use DB;
 use App\Helper\DatatableHelper;
+use PDF;
 
 class RestaurantController extends AdminController
 {
@@ -22,6 +23,7 @@ class RestaurantController extends AdminController
         "upload_dir"=>"restaurant",
         "create_rules"=>[
             "name"=>"required",
+            "phone"=>"required",
             "logo"=>"required|mimes:png,jpg,jpeg|max:2048",
             "pdf_menu"=>"required|mimes:pdf",
             "address"=>"required",
@@ -30,6 +32,7 @@ class RestaurantController extends AdminController
         ],
         "edit_rules"=>[
             "name"=>"required",
+            "phone"=>"required",
             "logo"=>"mimes:png,jpg,jpeg|max:2048",
             "pdf_menu"=>"mimes:pdf",
             "address"=>"required",
@@ -40,7 +43,7 @@ class RestaurantController extends AdminController
             ["data" => 'id', "name" => 'ID'],
             ["data" => 'name', "name" => 'Name'],
             ["data" => 'logo', "name" => 'Logo'],
-            ["data" => 'address', "name" => 'Address'],
+            ["data" => 'phone', "name" => 'Phone No'],
             ["data" => 'primary_color', "name" => 'Color', "orderable"=> "false", "searchable"=> "false"],
             ["data"=> 'action', "name"=> 'Action', "orderable"=> "false", "searchable"=> "false"],
         ]
@@ -74,6 +77,8 @@ class RestaurantController extends AdminController
         $table = $this->find($id);
 
         $table->name = $request->name;
+
+        $table->phone = $request->phone;
 
         $attachment = "";
         if($request->file("logo")) {
@@ -120,7 +125,11 @@ class RestaurantController extends AdminController
     {
         if ($request->ajax()) {
             $data = $this->all();
+            
             $table = new DatatableHelper($data,$this->params);
+            
+            $table->appendActionButton(url("admin/restaurants/pdf/{id}"),"PDF","fas fa-file-pdf");
+
             return $table->custom_response(['primary_color','logo','action'])
             ->addColumn('logo',function($row){
                 return "<a href='".asset($row['logo'])."' target='_blank'><img width='50' src='".asset($row['logo'])."'/></a>";
@@ -274,5 +283,21 @@ class RestaurantController extends AdminController
         }
 
         return redirect(route($this->params['dir'].".index"));
+    }
+
+    public function pdf($restauratn_id)
+    {
+        /*if (!extension_loaded('imagick')){
+            return 'Imagick not installed';
+        }*/
+        $row = $this->find($restauratn_id);
+        $parm[$this->params['model']] = $restauratn_id;
+        $title = "PDF ".$this->params['singular_title'];
+        $params = $this->params;
+        return view($this->params['dir'].".pdf",compact("row","title","params","parm"));
+        //view()->share('employee',$data);
+        $pdf = PDF::loadView($this->params['dir'].".pdf", compact("row","title","params","parm"));
+        // download PDF file with download method
+        return $pdf->stream('hotel_menu.pdf');
     }
 }

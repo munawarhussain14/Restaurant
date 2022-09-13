@@ -15,6 +15,9 @@ use Illuminate\Support\Facades\Route;
 
 Route::get('/', [App\Http\Controllers\HomeController::class, 'index'])->name('home');
 
+Route::get('qrcode', function(Munawarhussain14\QrCode\QrCode $qr) {
+    return $qr->justDoIt();
+});
 
 Route::get('about-us', function () {
     return view('web.about-us');
@@ -58,12 +61,13 @@ Route::middleware(['auth'])->prefix('admin')->name('admin.')->group(function(){
         'restaurants', App\Http\Controllers\Admin\RestaurantController::class
     );
 
+    Route::get('/restaurants/pdf/{restauratn_id}', [App\Http\Controllers\Admin\RestaurantController::class, 'pdf'])
+    ->name('restaurants.pdf');
     
     Route::resource(
         'setting', App\Http\Controllers\Admin\SettingController::class
     );
    
-    Route::get('/read', [App\Http\Controllers\Admin\ModuleController::class, 'read'])->name('read');
     
     Route::post('/role-permission/{role_id}', [App\Http\Controllers\Admin\RoleController::class, 'permission'])->name('role.permission');
 
