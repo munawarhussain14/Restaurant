@@ -948,8 +948,6 @@ namespace MunawarHussain14\QrCode;
                 ImagePng($image);
             } else {
                 if($saveandprint===TRUE){
-                    ImagePng($image, $filename);
-                    dd($image);
                     header("Content-type: image/png");
                     ImagePng($image);
                 }else{

@@ -287,9 +287,9 @@ class RestaurantController extends AdminController
 
     public function pdf($restauratn_id)
     {
-        /*if (!extension_loaded('imagick')){
+        if (!extension_loaded('imagick')){
             return 'Imagick not installed';
-        }*/
+        }
         $row = $this->find($restauratn_id);
         $parm[$this->params['model']] = $restauratn_id;
         $title = "PDF ".$this->params['singular_title'];
