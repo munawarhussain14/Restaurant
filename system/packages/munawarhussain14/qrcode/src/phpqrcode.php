@@ -1,7 +1,5 @@
 <?php
 
-namespace MunawarHussain14\QrCode;
-
 /*
  * PHP QR Code encoder
  *
@@ -943,13 +941,13 @@ namespace MunawarHussain14\QrCode;
         public static function png($frame, $filename = false, $pixelPerPoint = 4, $outerFrame = 4,$saveandprint=FALSE) 
         {
             $image = self::image($frame, $pixelPerPoint, $outerFrame);
+            
             if ($filename === false) {
                 Header("Content-type: image/png");
                 ImagePng($image);
             } else {
                 if($saveandprint===TRUE){
                     ImagePng($image, $filename);
-                    dd($image);
                     header("Content-type: image/png");
                     ImagePng($image);
                 }else{

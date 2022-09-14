@@ -1,11 +1,7 @@
 {
     "name": "munawarhussain14/qrcode",
     "description": "Generate Qr Code",
-    "autoload": {
-        "psr-4": {
-            "Munawarhussain14\\QrCode\\": "src/"
-        }
-    },
+    "license": "MIT",
     "authors": [
         {
             "name": "Munawar Hussain",
@@ -13,5 +9,17 @@
         }
     ],
     "minimum-stability": "dev",
-    "require": {}
+    "require": {},
+    "autoload": {
+        "psr-4": {
+            "Munawarhussain14\\QrCode\\": "src/"
+        }
+    },
+    "extra": {
+        "laravel": {
+            "providers": [
+                "Munawarhussain14\\QrCode\\QrCodeServiceProvider"
+            ]
+        }
+    }
 }
