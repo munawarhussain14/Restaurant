@@ -39,7 +39,7 @@ class DatatableHelper{
     function action($row){
         $specifier = $this->params["model"];
         $parm[$specifier] = $row['id'];
-        
+        $this->btn = "";
         if(Auth::user()->can("read-".$this->params["module_name"]))
         {
             foreach($this->custom_btn as $button){

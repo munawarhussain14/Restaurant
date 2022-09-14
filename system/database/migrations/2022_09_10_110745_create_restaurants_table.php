@@ -19,6 +19,7 @@ return new class extends Migration
             $table->string("phone",50)->nullable();
             $table->string("logo",1024)->nullable();
             $table->string("pdf_menu",1024)->nullable();
+            $table->string("qrcode",1024)->nullable();
             $table->text("address")->nullable();
             $table->string("primary_color")->nullable();
             $table->string("secondary_color")->nullable();

@@ -1,5 +1,32 @@
 @extends('admin.layouts.app')
 
+@push("scripts")
+<script src="{{asset('assets/admin/plugins/qrcode/qrcode.min.js')}}"></script>
+<script type="text/javascript">
+    $(document).ready(function(){
+        @if($row->pdf_menu)
+        var qrcode = new QRCode(document.getElementById("qrcode"), "{{url($row->pdf_menu)}}");
+        @if(!file_exists($row->qrcode))
+        setTimeout(function(){
+            let image = $("#qrcode img").attr("src");
+            $.post("{{route("admin.restaurants.qrcode",["restaurant_id"=>$row->id])}}", {qrcode: image}, function(result){
+                $("#qrcode-container img").attr("src",result.qrcode);
+                $(".loading").fadeOut(function(){
+                    $("#qrcode-container").fadeIn();
+                });
+            });
+        },1000);
+        @else
+        $("#qrcode-container img").attr("src","{{url($row->qrcode)}}");
+        $(".loading").fadeOut(function(){
+            $("#qrcode-container").fadeIn();
+        });
+        @endif
+        @endif
+    });
+</script>
+@endpush
+
 @section("content")
 <div class="row">
     <div class="col-9">
@@ -96,7 +123,17 @@
                 <div class="form-group">
                     <p class="text-center">
                         @if($row->pdf_menu)
-                        {!! QrCode::size(150)->generate(asset($row->pdf_menu)) !!}
+                        <div id="qrcode" style="display: none;">
+                        </div>
+                        <div class="loading text-center">
+                            <div class="spinner-border text-success" role="status">
+                              <span class="sr-only">Loading...</span>
+                            </div>
+                        </div>
+                        <div id="qrcode-container" style="display: none;">
+                            <img src=""/>
+                        </div>
+                        {{-- {!! QrCode::size(150)->generate(asset($row->pdf_menu)) !!} --}}
                         @else
                         No PDF Menue
                         @endif

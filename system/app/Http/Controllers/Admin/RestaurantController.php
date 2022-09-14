@@ -98,6 +98,7 @@ class RestaurantController extends AdminController
         if($request->file("pdf_menu")) {
             if($id&&file_exists($table->pdf_menu)){
                 unlink($table->pdf_menu);
+                unlink($table->qrcode);
             }
             $file = $request->file('pdf_menu');
             $attachment = $this->uploadFile($file,"uploads/".$this->params['upload_dir']."/menus");
@@ -105,6 +106,7 @@ class RestaurantController extends AdminController
 
         if($attachment!=""){
             $table->pdf_menu = $attachment;
+            $table->qrcode = null;
         }
                 
         $table->address = $request->address;
@@ -114,6 +116,8 @@ class RestaurantController extends AdminController
         $table->secondary_color = $request->secondary_color;       
         
         $table->save();
+
+        return $table->id;
     }
 
     /**
@@ -181,9 +185,9 @@ class RestaurantController extends AdminController
     {     
         $data = [];
         $request->validate($this->params['create_rules']);
-        $this->onHandleOperation($request);
+        $id = $this->onHandleOperation($request);
 
-        return redirect(route($this->params['route'].".index"));
+        return redirect(route($this->params['route'].".show",["restaurant"=>$id]));
     }
 
     function uploadFile($file,$destinationPath){
@@ -253,7 +257,8 @@ class RestaurantController extends AdminController
         
         $this->onHandleOperation($request,$id);
 
-        return redirect(route($this->params['route'].".index"));
+        return redirect(route($this->params['route'].".show",["restaurant"=>$id]));
+        //return redirect(route($this->params['route'].".index"));
     }
 
     /**
@@ -285,11 +290,31 @@ class RestaurantController extends AdminController
         return redirect(route($this->params['dir'].".index"));
     }
 
+    public function uploadQrcode(Request $request, $restaurant_id){
+        
+        $restaurant = Restaurant::find($restaurant_id);
+
+        $data = $request->qrcode;
+
+        list($type, $data) = explode(';', $data);
+        list(, $data)      = explode(',', $data);
+        $data = base64_decode($data);
+        $path = "uploads/".$this->params['upload_dir']."/qrcodes/$restaurant_id.png";
+        file_put_contents($path, $data);
+
+        if(file_exists($path))
+        {
+            $restaurant->qrcode = $path;
+            $restaurant->save();
+            return response()->json(["qrcode"=>url($path)],200);
+        }else{
+            return response()->json(["message"=>"QrCode not Generated!"],404);
+        }
+        
+    }
+
     public function pdf($restauratn_id)
     {
-        if (!extension_loaded('imagick')){
-            return 'Imagick not installed';
-        }
         $row = $this->find($restauratn_id);
         $parm[$this->params['model']] = $restauratn_id;
         $title = "PDF ".$this->params['singular_title'];

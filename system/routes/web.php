@@ -65,6 +65,9 @@ Route::middleware(['auth'])->prefix('admin')->name('admin.')->group(function(){
 
     Route::get('/restaurants/pdf/{restauratn_id}', [App\Http\Controllers\Admin\RestaurantController::class, 'pdf'])
     ->name('restaurants.pdf');
+
+    Route::post('/restaurants/qrcode/{restaurant_id}', [App\Http\Controllers\Admin\RestaurantController::class, 'uploadQrcode'])
+    ->name('restaurants.qrcode');
     
     Route::resource(
         'setting', App\Http\Controllers\Admin\SettingController::class
