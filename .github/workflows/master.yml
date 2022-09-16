@@ -1,21 +1,20 @@
-on: [push]
+on: push
 
 jobs:
-    deploy_job:
+  deploy_job:
     runs-on: ubuntu-latest
     name: build&deploy
     steps:
-        # To use this repository's private action, you must check out the repository
-        - name: Checkout
+      # To use this repository's private action, you must check out the repository
+      - name: Checkout
         uses: actions/checkout@v2
 
-        - name: deploy file to server
+      - name: deploy file to server
         uses: wlixcc/SFTP-Deploy-Action@v1.2.4
         with:
-            username: '${{secrets.FTP_USERNAME}}'
-            server: '${{secrets.FTP_HOST}}'
-            password: '${{ secrets.FTP_PASSWORD }}'
-            local_path: './*'
-            remote_path: '${{ secrets.FTP_REMOTE_FOLDER }}'
-            sftpArgs: '-o ConnectTimeout=5'
-
+          username: "${{secrets.FTP_USERNAME}}"
+          server: "${{secrets.FTP_HOST}}"
+          password: "${{ secrets.FTP_PASSWORD }}"
+          local_path: "./*"
+          remote_path: "${{ secrets.FTP_REMOTE_FOLDER }}"
+          sftpArgs: "-o ConnectTimeout=5"
