@@ -76,11 +76,11 @@
         </p>
       @endif
 
-      @if (Route::has('register'))
+      {{-- @if (Route::has('register'))
         <p class="mb-0">
           <a href="{{ route('register') }}" class="text-center">{{ __('Register') }}</a>
         </p>
-      @endif
+      @endif --}}
     
     </div>
     <!-- /.login-card-body -->

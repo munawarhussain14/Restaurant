@@ -117,13 +117,14 @@
               @enderror
             </div>
           </div>
-          <div class="col-6">
+          <div class="col-md-2">
             <div class="form-group">
               <label for="name">Primary Color</label>
               <div class="input-group mb-3">
                 <input 
-                  type="text" class="form-control @error('primary_color') is-invalid @enderror" 
+                  class="form-control @error('primary_color') is-invalid @enderror" 
                   id="primary_color" 
+                  type="color"
                   name="primary_color"
                   placeholder="Enter Primary Color"
                   value="{{ old('primary_color',(isset($row))?$row->primary_color:"") }}"
@@ -141,12 +142,12 @@
               @enderror
             </div>
           </div>
-          <div class="col-6">
+          <div class="col-md-2">
             <div class="form-group">
               <label for="name">Secondary Color</label>
               <div class="input-group mb-3">
                   <input 
-                  type="text" class="form-control @error('secondary_color') is-invalid @enderror" 
+                  type="color" class="form-control @error('secondary_color') is-invalid @enderror" 
                   id="secondary_color" 
                   name="secondary_color"
                   placeholder="Enter Secondary Color"
@@ -165,7 +166,7 @@
               @enderror
             </div>
           </div>
-          <div class="col-6">
+          <div class="col-md-4">
             <div class="form-group">
                 <label for="logo">Logo</label>
                 <div class="input-group">
@@ -191,7 +192,7 @@
                 <img width="150" src="{{asset(isset($row->logo)?$row->logo:'assets/images/no-image.jpg')}}"/>
               </div>
           </div>
-          <div class="col-6">
+          <div class="col-md-4">
             <div class="form-group">
                 <label for="pdf_menu">PDF Menue</label>
                 <div class="input-group">

@@ -3,17 +3,17 @@
     <!-- Brand Logo -->
     <a href="{{route("admin.dashboard")}}" class="brand-link text-center">
       {{-- <img src="{{asset('assets/admin/dist/img/logo.png')}}" alt="Moderate" class="brand-image img-circle elevation-3" style="opacity: .8"> --}}
-      <span class="brand-text font-weight-light">Moderate</span>
+      <span class="brand-text font-weight-light">Give Away Tips</span>
     </a>
 
     <!-- Sidebar -->
     <div class="sidebar">
       <!-- Sidebar user (optional) -->
-      <div class="user-panel mt-3 pb-3 mb-3 d-flex">
-        <div class="image">
+      <div class="user-panel mt-3 pb-3 mb-3 d-flex text-center">
+        {{-- <div class="image">
           <img src="{{asset('assets/admin/dist/img/avatar3.png')}}" class="img-circle elevation-2" alt="User Image">
-        </div>
-        <div class="info">
+        </div> --}}
+        <div class="info" style="margin:auto;">
           <a href="#" class="d-block">{{ Auth::user()->name }}</a>
         </div>
       </div>

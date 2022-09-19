@@ -1,9 +1,6 @@
 @extends('admin.layouts.app')
 
-@section('styles')
-@endsection
-
-@section('scripts')
+@push('scripts')
 <script src="{{asset('assets/admin/plugins/select2/js/select2.full.min.js')}}"></script>
   <link rel="stylesheet" href="{{asset('assets/admin/plugins/select2/css/select2.min.css')}}">
   <link rel="stylesheet" href="{{asset('assets/admin/plugins/select2-bootstrap4-theme/select2-bootstrap4.min.css')}}">
@@ -19,7 +16,7 @@ $(function () {
   });
   })
 </script>
-@endsection
+@endpush
 
 @section("content")
 <div class="card card-primary">
@@ -105,29 +102,26 @@ $(function () {
                         </span>
                     @enderror
                   </div>
-                  <div class="form-group">
-                    <label for="avatar">Profile Image</label>
-                    <div class="input-group">
-                      <div class="custom-file">
-                        <input 
-                        type="file" 
-                        name="attachment" 
-                        accept="application/pdf" 
-                        value="{{ old('avatar') }}" 
-                        class="custom-file-input" 
-                        id="avatar">
-                        <label class="custom-file-label" for="avatar">{{ old('attachment',"Choose file") }}</label>
+                    {{-- <div class="form-group">
+                      <label for="avatar">Profile Image</label>
+                      <div class="input-group">
+                        <div class="custom-file">
+                          <input 
+                          type="file" 
+                          name="attachment" 
+                          accept="application/pdf" 
+                          value="{{ old('avatar') }}" 
+                          class="custom-file-input" 
+                          id="avatar">
+                          <label class="custom-file-label" for="avatar">{{ old('attachment',"Choose file") }}</label>
+                        </div>
                       </div>
-                      {{-- <div class="input-group-append">
-                        <span class="input-group-text">Upload</span>
-                      </div> --}}
-                    </div>
-                    @error('avatar')
-                        <span class="invalid-feedback" role="alert">
-                            <strong>{{ $message }}</strong>
-                        </span>
-                    @enderror
-                  </div>
+                      @error('avatar')
+                          <span class="invalid-feedback" role="alert">
+                              <strong>{{ $message }}</strong>
+                          </span>
+                      @enderror
+                    </div> --}}
                 </div>
                 <!-- /.card-body -->
 

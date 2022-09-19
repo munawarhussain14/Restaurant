@@ -13,7 +13,9 @@ use Illuminate\Support\Facades\Route;
 |
 */
 
-Route::get('/', [App\Http\Controllers\HomeController::class, 'index'])->name('home');
+Route::get('/', function(){
+    return redirect("https://giveawayapp.io");
+})->name('home');
 
 Route::get('qrcode', function() {
     // Munawarhussain14\QrCode\QRcode::png('code data text',"./uploads/restaurant/images");
