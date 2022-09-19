@@ -4,9 +4,16 @@ namespace App\Http\Controllers\Admin;
 
 use App\Http\Controllers\Controller;
 use Illuminate\Http\Request;
+use App\Models\User;
+use App\Models\Restaurant;
 
 class DashboardController extends Controller
 {
+
+    private $params = [
+        "singular_title"=>"Dashboard",
+        "plural_title"=>"Dashboard",
+    ];
     /**
      * Create a new controller instance.
      *
@@ -24,6 +31,9 @@ class DashboardController extends Controller
      */
     public function index()
     {
-        return view('admin.dashboard');
+        $users = User::all();
+        $restaurants = Restaurant::all();
+        $params = $this->params;
+        return view('admin.dashboard',compact("params","users","restaurants"));
     }
 }
