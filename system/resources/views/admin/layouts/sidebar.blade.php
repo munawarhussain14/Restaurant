@@ -2,8 +2,8 @@
   <aside class="main-sidebar sidebar-dark-primary elevation-4">
     <!-- Brand Logo -->
     <a href="{{route("admin.dashboard")}}" class="brand-link text-center">
-      {{-- <img src="{{asset('assets/admin/dist/img/logo.png')}}" alt="Moderate" class="brand-image img-circle elevation-3" style="opacity: .8"> --}}
-      <span class="brand-text font-weight-light">Give Away Tips</span>
+      <img src="{{asset('assets/images/logo.svg')}}" alt="Give Away Tips" width="150">
+      {{-- <span class="brand-text font-weight-light">Give Away Tips</span> --}}
     </a>
 
     <!-- Sidebar -->

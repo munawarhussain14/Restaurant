@@ -8,6 +8,8 @@
 
     <title>{{ config('app.name', 'Give Away Tips') }}</title>
 
+    <link rel="icon" href="favicon.png" />
+
   <!-- Google Font: Source Sans Pro -->
   <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Source+Sans+Pro:300,400,400i,700&display=fallback">
   <!-- Font Awesome -->
@@ -17,10 +19,12 @@
   <!-- Theme style -->
   <link rel="stylesheet" href="{{asset('assets/admin/dist/css/adminlte.min.css')}}">
 </head>
-<body class="hold-transition login-page">
+<body class="hold-transition login-page" style="background:url('{{asset("assets/images/bg_header.webp")}}'); background-size:cover;">
 <div class="login-box">
   <div class="login-logo">
-    <a href="/"><b>Give Away Tips</b></a>
+    <a href="/">
+      <img src="{{asset('assets/images/logo.svg')}}" alt="Give Away Tips" width="150"/>
+    </a>
   </div>
   @yield('content')
 </div>
