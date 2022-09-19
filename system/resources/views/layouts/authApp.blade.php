@@ -6,7 +6,7 @@
   <!-- CSRF Token -->
     <meta name="csrf-token" content="{{ csrf_token() }}">
 
-    <title>{{ config('app.name', 'Modrate') }}</title>
+    <title>{{ config('app.name', 'Give Away Tips') }}</title>
 
   <!-- Google Font: Source Sans Pro -->
   <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Source+Sans+Pro:300,400,400i,700&display=fallback">
@@ -20,7 +20,7 @@
 <body class="hold-transition login-page">
 <div class="login-box">
   <div class="login-logo">
-    <a href="/"><b>Moderate</b></a>
+    <a href="/"><b>Give Away Tips</b></a>
   </div>
   @yield('content')
 </div>
