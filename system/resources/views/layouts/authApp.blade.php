@@ -21,11 +21,11 @@
 </head>
 <body class="hold-transition login-page" style="background:url('{{asset("assets/images/bg_header.webp")}}'); background-size:cover;">
 <div class="login-box">
-  <div class="login-logo">
+  {{-- <div class="login-logo">
     <a href="/">
       <img src="{{asset('assets/images/logo.svg')}}" alt="Give Away Tips" width="150"/>
     </a>
-  </div>
+  </div> --}}
   @yield('content')
 </div>
 <!-- /.login-box -->

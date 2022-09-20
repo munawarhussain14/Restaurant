@@ -9,7 +9,9 @@
         @if(!file_exists($row->qrcode))
         setTimeout(function(){
             let image = $("#qrcode img").attr("src");
-            $.post("{{route("admin.restaurants.qrcode",["restaurant_id"=>$row->id])}}", {qrcode: image}, function(result){
+            $.post("{{route("admin.restaurants.qrcode",["restaurant_id"=>$row->id])}}", {qrcode: image}, 
+            function(result){
+                console.log(result);
                 $("#qrcode-container img").attr("src",result.qrcode);
                 $(".loading").fadeOut(function(){
                     $("#qrcode-container").fadeIn();

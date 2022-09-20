@@ -79,6 +79,14 @@ class RestaurantController extends AdminController
         $table->name = $request->name;
 
         $table->phone = $request->phone;
+                
+        $table->address = $request->address;
+        
+        $table->primary_color = $request->primary_color;
+
+        $table->secondary_color = $request->secondary_color;       
+        
+        $table->save();
 
         $attachment = "";
         if($request->file("logo")) {
@@ -86,7 +94,12 @@ class RestaurantController extends AdminController
                 unlink($table->logo);
             }
             $file = $request->file('logo');
-            $attachment = $this->uploadFile($file,"uploads/".$this->params['upload_dir']."/images");
+            $fileName = "logo_".$table->id;
+            $attachment = $this->uploadFile(
+                $file,
+                "uploads/".$this->params['upload_dir']."/logos",
+                $fileName
+            );
         }
 
         if($attachment!=""){
@@ -101,20 +114,19 @@ class RestaurantController extends AdminController
                 unlink($table->qrcode);
             }
             $file = $request->file('pdf_menu');
-            $attachment = $this->uploadFile($file,"uploads/".$this->params['upload_dir']."/menus");
+            $fileName = "menu_".$table->id;
+            $attachment = $this->uploadFile(
+                $file,
+                "uploads/".$this->params['upload_dir']."/menus",
+                $fileName
+            );
         }
 
         if($attachment!=""){
             $table->pdf_menu = $attachment;
             $table->qrcode = null;
         }
-                
-        $table->address = $request->address;
-        
-        $table->primary_color = $request->primary_color;
 
-        $table->secondary_color = $request->secondary_color;       
-        
         $table->save();
 
         return $table->id;
@@ -190,12 +202,17 @@ class RestaurantController extends AdminController
         return redirect(route($this->params['route'].".show",["restaurant"=>$id]));
     }
 
-    function uploadFile($file,$destinationPath){
+    function uploadFile($file,$destinationPath,$fileName=null){
         //Display File Name
-        $fileName = time().'_'.$file->getClientOriginalName();
+        if(!$fileName)
+        {
+            $fileName = time().'_'.$file->getClientOriginalName();
+        }else{
+            //Display File Extension
+            $ext = $file->getClientOriginalExtension();
+            $fileName .= ".$ext";
+        }
     
-        //Display File Extension
-        $ext = $file->getClientOriginalExtension();
         
         //Display File Real Path
         $realPath = $file->getRealPath();
