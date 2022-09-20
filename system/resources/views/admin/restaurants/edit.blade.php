@@ -187,7 +187,7 @@
                 @enderror
               </div>
               <div class="logo-image">
-                <img width="150" src="{{asset(isset($row->logo)?$row->logo:'assets/images/no-image.jpg')}}"/>
+                <img width="150" src="{{asset(isset($row->logo)?Storage::url($row->logo):'assets/images/no-image.jpg')}}"/>
               </div>
           </div>
           <div class="col-md-4">

@@ -9,6 +9,7 @@ use App\Models\Permission;
 use DB;
 use App\Helper\DatatableHelper;
 use PDF;
+use Illuminate\Support\Facades\Storage;
 
 class RestaurantController extends AdminController
 {
@@ -97,7 +98,7 @@ class RestaurantController extends AdminController
             $fileName = "logo_".$table->id;
             $attachment = $this->uploadFile(
                 $file,
-                "uploads/".$this->params['upload_dir']."/logos",
+                $this->params['upload_dir']."/logos",
                 $fileName
             );
         }
@@ -117,7 +118,7 @@ class RestaurantController extends AdminController
             $fileName = "menu_".$table->id;
             $attachment = $this->uploadFile(
                 $file,
-                "uploads/".$this->params['upload_dir']."/menus",
+                $this->params['upload_dir']."/menus",
                 $fileName
             );
         }
@@ -148,7 +149,7 @@ class RestaurantController extends AdminController
 
             return $table->custom_response(['primary_color','logo','action'])
             ->addColumn('logo',function($row){
-                return "<a href='".asset($row['logo'])."' target='_blank'><img width='50' src='".asset($row['logo'])."'/></a>";
+                return "<a href='".Storage::url($row['logo'])."' target='_blank'><img width='50' src='".Storage::url($row['logo'])."'/></a>";
             })->addColumn('primary_color',function($row){
                 $colors = "
                 <table class='column-table'>
@@ -213,7 +214,6 @@ class RestaurantController extends AdminController
             $fileName .= ".$ext";
         }
     
-        
         //Display File Real Path
         $realPath = $file->getRealPath();
     
@@ -225,10 +225,15 @@ class RestaurantController extends AdminController
 
         //Move Uploaded File
 //        $destinationPath = 'uploads/Auction/attachment';
+        $base = Storage::disk('public');
+        
+        $path = "$destinationPath/$fileName";
 
-        $path = $file->move($destinationPath,$fileName);
+        $base->put($path,file_get_contents($realPath));
+        //$file->store($path,'public');
+        //$path = $file->move($destinationPath,$fileName);
 
-        return $destinationPath."/".$fileName;
+        return $path;
     }
 
     /**
@@ -316,14 +321,16 @@ class RestaurantController extends AdminController
         list($type, $data) = explode(';', $data);
         list(, $data)      = explode(',', $data);
         $data = base64_decode($data);
-        $path = "uploads/".$this->params['upload_dir']."/qrcodes/$restaurant_id.png";
-        file_put_contents($path, $data);
+        $path = $this->params['upload_dir']."/qrcodes/$restaurant_id.png";
+        $base = Storage::disk('public');
+        $base->put($path,$data);
+        //file_put_contents($path, $data);
 
-        if(file_exists($path))
+        if(Storage::disk('public')->exists($path))
         {
             $restaurant->qrcode = $path;
             $restaurant->save();
-            return response()->json(["qrcode"=>url($path)],200);
+            return response()->json(["qrcode"=>$base->url($path)],200);
         }else{
             return response()->json(["message"=>"QrCode not Generated!"],404);
         }
@@ -336,7 +343,7 @@ class RestaurantController extends AdminController
         $parm[$this->params['model']] = $restauratn_id;
         $title = "PDF ".$this->params['singular_title'];
         $params = $this->params;
-        $pdf = PDF::loadView($this->params['dir'].".pdf", compact("row","title","params","parm"));
+        $pdf = PDF::setPaper('A4')->loadView($this->params['dir'].".pdf", compact("row","title","params","parm"));
         // download PDF file with download method
         return $pdf->stream('hotel_menu.pdf',compact("row"));
     }

@@ -86,8 +86,8 @@
                         <div class="form-group">
                             <label for="logo">Logo</label>
                             <p>
-                                <a target="_blank" class="logo" href="{{url($row->logo)}}">
-                                    <img src="{{url($row->logo)}}" width="250"/>
+                                <a target="_blank" class="logo" href="{{Storage::url($row->logo)}}">
+                                    <img src="{{Storage::url($row->logo)}}" width="250"/>
                                 </a>
                             </p>
                         </div>
@@ -98,7 +98,7 @@
                             <label for="pdf_menu">PDF Menu</label>
                             <p>
                                 @if($row->pdf_menu)
-                                <a target="_blank" class="attach_icon" href="{{url($row->pdf_menu)}}">
+                                <a target="_blank" class="attach_icon" href="{{Storage::url($row->pdf_menu)}}">
                                     <i class="fas fa-file-pdf"></i>
                                 </a>
                                 @else

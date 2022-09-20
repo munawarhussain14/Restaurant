@@ -10,7 +10,7 @@
 
   @stack("styles")
 </head>
-<body class="hold-transition sidebar-mini">
+<body>
   
   @yield("content")
 
