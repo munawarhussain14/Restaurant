@@ -11,6 +11,7 @@
 /system/Homestead.yaml
 /system/npm-debug.log
 /system/yarn-error.log
+/assets
 cmd.cmd
 /.idea
 /.vscode

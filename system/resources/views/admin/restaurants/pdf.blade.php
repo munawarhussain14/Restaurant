@@ -35,11 +35,11 @@
                 <td>
                     <p>
                     <span>Phone Number</span><br>
-                    +971 52 781 2718
+                    {{$row->phone}}
                     </p>
                     <p>
                     <span>Liceria & CO.</span><br>
-                    123 Address of the restaurant
+                    {{$row->address}}
                     </p>
                 </td>
             </tr>
