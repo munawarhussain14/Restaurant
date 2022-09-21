@@ -2,6 +2,7 @@
 
 @push("scripts")
 <script src="{{asset('assets/admin/plugins/qrcode/qrcode.min.js')}}"></script>
+{{-- https://www.cssscript.com/qr-code-generator-logo-title/ --}}
 <script type="text/javascript">
     $(document).ready(function(){
         @if($row->pdf_menu)
@@ -82,7 +83,7 @@
                     <div class="col-12">
                         <hr>
                     </div>
-                    <div class="col-6">
+                    <div class="col-md-6">
                         <div class="form-group">
                             <label for="logo">Logo</label>
                             <p>
@@ -93,7 +94,7 @@
                         </div>
                         <hr>
                     </div>
-                    <div class="col-6">
+                    <div class="col-md-6">
                         <div class="form-group">
                             <label for="pdf_menu">PDF Menu</label>
                             <p>
@@ -107,6 +108,14 @@
                             </p>
                         </div>
                         <hr>
+                        <div class="form-group">
+                            <label for="pdf_menu">Flyer</label>
+                            <p>
+                                <a target="_blank" class="attach_icon" href="{{url("admin/restaurants/pdf/$row->id")}}">
+                                    <i class="fas fa-scroll"></i>
+                                </a>
+                            </p>
+                        </div>
                     </div>
                 </div>
             <!-- /.card-body -->
