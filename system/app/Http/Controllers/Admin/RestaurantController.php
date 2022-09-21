@@ -338,6 +338,12 @@ class RestaurantController extends AdminController
         
     }
 
+    public function download($restauratn_id)
+    {
+        $row = $this->find($restauratn_id);
+        return Storage::disk("public")->download($row->pdf_menu);
+    }
+
     public function pdf($restauratn_id)
     {
         $row = $this->find($restauratn_id);

@@ -68,8 +68,11 @@ Route::middleware(['auth'])->prefix('admin')->name('admin.')->group(function(){
         'restaurants', App\Http\Controllers\Admin\RestaurantController::class
     );
 
-    Route::get('/restaurants/pdf/{restauratn_id}', [App\Http\Controllers\Admin\RestaurantController::class, 'pdf'])
+    Route::get('/restaurants/pdf/{restaurant_id}', [App\Http\Controllers\Admin\RestaurantController::class, 'pdf'])
     ->name('restaurants.pdf');
+
+    Route::get('/restaurants/pdf/download/{restaurant_id}', [App\Http\Controllers\Admin\RestaurantController::class, 'download'])
+    ->name('download.pdf');
 
     Route::post('/restaurants/qrcode/{restaurant_id}', [App\Http\Controllers\Admin\RestaurantController::class, 'uploadQrcode'])
     ->name('restaurants.qrcode');
