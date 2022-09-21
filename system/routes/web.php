@@ -40,6 +40,9 @@ Route::get('admin', function () {
 
 Auth::routes();
 
+Route::get('/restaurants/pdf/download/{restaurant_id}', [App\Http\Controllers\Admin\RestaurantController::class, 'download'])
+    ->name('download.pdf');
+
 Route::middleware(['auth'])->prefix('admin')->name('admin.')->group(function(){
     
     Route::get('/dashboard', [App\Http\Controllers\Admin\DashboardController::class, 'index'])->name('dashboard');

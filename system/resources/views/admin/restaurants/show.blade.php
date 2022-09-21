@@ -6,7 +6,7 @@
 <script type="text/javascript">
     $(document).ready(function(){
         @if($row->pdf_menu)
-        var qrcode = new QRCode(document.getElementById("qrcode"), "{{route("admin.download.pdf",["restaurant_id"=>$row->id])}}");
+        var qrcode = new QRCode(document.getElementById("qrcode"), "{{route("download.pdf",["restaurant_id"=>$row->id])}}");
         @if(!file_exists($row->qrcode))
         setTimeout(function(){
             let image = $("#qrcode img").attr("src");
