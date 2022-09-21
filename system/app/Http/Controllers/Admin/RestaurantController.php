@@ -91,8 +91,8 @@ class RestaurantController extends AdminController
 
         $attachment = "";
         if($request->file("logo")) {
-            if($id&&file_exists($table->logo)){
-                unlink($table->logo);
+            if($id&&Storage::disk('public')->exists($table->logo)){
+                Storage::disk('public')->delete($table->logo);
             }
             $file = $request->file('logo');
             $fileName = "logo_".$table->id;
@@ -110,9 +110,9 @@ class RestaurantController extends AdminController
         $attachment = "";
         
         if($request->file("pdf_menu")) {
-            if($id&&file_exists($table->pdf_menu)){
-                unlink($table->pdf_menu);
-                unlink($table->qrcode);
+            if($id&&Storage::disk('public')->exists($table->pdf_menu)){
+                Storage::disk('public')->delete($table->pdf_menu);
+                Storage::disk('public')->delete($table->qrcode);
             }
             $file = $request->file('pdf_menu');
             $fileName = "menu_".$table->id;
@@ -292,15 +292,16 @@ class RestaurantController extends AdminController
     public function destroy(Request $request, $id)
     {
         $row = $this->find($id);
-        
-        if(file_exists($row->logo))
+        if(Storage::disk('public')->exists($row->logo))
         {
-            unlink($row->logo);
+            Storage::disk('public')->delete($row->logo);
+            //unlink($row->logo);
         }
 
-        if(file_exists($row->pdf_menu))
+        if(Storage::disk('public')->exists($row->pdf_menu))
         {
-            unlink($row->pdf_menu);
+            Storage::disk('public')->delete($row->pdf_menu);
+            Storage::disk('public')->delete($row->qrcode);
         }
 
         $row->delete();
