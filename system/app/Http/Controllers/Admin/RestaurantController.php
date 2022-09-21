@@ -343,7 +343,7 @@ class RestaurantController extends AdminController
         $parm[$this->params['model']] = $restauratn_id;
         $title = "PDF ".$this->params['singular_title'];
         $params = $this->params;
-        $pdf = PDF::setPaper('A4')->loadView($this->params['dir'].".pdf", compact("row","title","params","parm"));
+        $pdf = PDF::setPaper('A5')->loadView($this->params['dir'].".pdf", compact("row","title","params","parm"));
         // download PDF file with download method
         return $pdf->stream('hotel_menu.pdf',compact("row"));
     }
