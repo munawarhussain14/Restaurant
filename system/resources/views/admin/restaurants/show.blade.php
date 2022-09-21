@@ -6,7 +6,7 @@
 <script type="text/javascript">
     $(document).ready(function(){
         @if($row->pdf_menu)
-        var qrcode = new QRCode(document.getElementById("qrcode"), "{{url($row->pdf_menu)}}");
+        var qrcode = new QRCode(document.getElementById("qrcode"), "{{Storage::url($row->pdf_menu)}}");
         @if(!file_exists($row->qrcode))
         setTimeout(function(){
             let image = $("#qrcode img").attr("src");
@@ -115,7 +115,7 @@
                                     <i class="fas fa-scroll"></i>
                                 </a>
                             </p>
-                        </div>
+                        </div>  
                     </div>
                 </div>
             <!-- /.card-body -->
