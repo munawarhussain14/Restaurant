@@ -13,7 +13,7 @@
             <tr>
                 <td>
                     <div class="qr-container">
-                        <p>
+                        <p style="font-size:16px; margin:0; padding:8px 0;">
                             SCAN TO VIEW<br>
                         OUR MENU 
                         </p>
@@ -31,15 +31,18 @@
                     </p>
                 </td>
             </tr>
+        </table>
+        <table class="main-table" style="width: 500px;">
             <tr>
-                <td>
-                    <p>
-                    <span>Phone Number</span><br>
-                    {{$row->phone}}
+                <td align="center">
+                    <p class="label-title" style="margin-top:12px;">Phone Number</p>
+                    <p class="p-content">
+                        {{$row->phone}}
                     </p>
-                    <p>
-                    <span>Liceria & CO.</span><br>
-                    {{$row->address}}
+                    <br>
+                    <p class="label-title">Liceria & CO.</p>
+                    <p class="p-content" style="min-height:30px;">
+                        {{$row->address}}
                     </p>
                 </td>
             </tr>
@@ -51,7 +54,7 @@
             </tr>
             <tr>
                 <td align="center">
-                    <img src="{{asset('assets/images/power_by.jpg')}}" width="100"/>
+                    <img src="{{asset('assets/images/power_by.jpg')}}" width="120"/>
                 </td>
             </tr>
         </table>
@@ -67,7 +70,22 @@
     .line{
         border-bottom:lightgrey solid 1px;
         width:100px;
-        margin: auto;
+        margin:2mm auto;
+    }
+
+    .label-title{
+        /* border:1px solid; */
+        font-size: 10px;
+        font-weight: 400;
+        margin:0 0 0.8mm 0;
+    }
+    
+    .p-content{
+        margin:0;
+    }
+    
+    .phone-label{
+        
     }
 
     span{
@@ -81,15 +99,15 @@
     }
 
     .logo{
-        margin:5mm;
+        margin:10mm;
     }
     .main-table{
         margin:auto;
-        width: 280px;
+        width: 300px;
     }
 
     .qr-container{
-        padding: 1mm 8mm 5.5mm 8mm;
+        padding: 1mm 7mm 4mm 7mm;
         background-color:{{$row->primary_color}};
         color:white;
         text-align: center;

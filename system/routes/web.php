@@ -22,6 +22,10 @@ Route::get('/', function(){
     return redirect("https://giveawayapp.io");
 })->name('home');
 
+Route::get('/home', function(){
+    return redirect("admin");
+});
+
 Route::get('qrcode', function() {
     // Munawarhussain14\QrCode\QRcode::png('code data text',"./uploads/restaurant/images");
     // $image = Munawarhussain14\QrCode\QRcode::png('code data text',"test.png");

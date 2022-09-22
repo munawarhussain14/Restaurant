@@ -16,5 +16,5 @@ jobs:
           server: "${{secrets.FTP_HOST}}"
           password: "${{ secrets.FTP_PASSWORD }}"
           local_path: "./system"
-          remote_path: "/var/www/html/give-away-tips/system"
+          remote_path: "./var/www/html/give-away-tips/system"
           sftpArgs: "-o ConnectTimeout=5"
