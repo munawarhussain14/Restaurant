@@ -13,7 +13,7 @@
             $.post("{{route("admin.restaurants.qrcode",["restaurant_id"=>$row->id])}}", {qrcode: image}, 
             function(result){
                 console.log(result);
-                $("#qrcode-container img").attr("src",result.qrcode);
+                $("#qrcode-container img").attr("src",result.qrcode+"?datetime={{date("Y.m.d-h:m:s")}}");
                 $(".loading").fadeOut(function(){
                     $("#qrcode-container").fadeIn();
                 });
