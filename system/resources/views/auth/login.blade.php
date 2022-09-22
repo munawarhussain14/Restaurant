@@ -3,7 +3,7 @@
 @section('content')
 <!-- /.login-logo -->
   <div class="card">
-    <div class="card-body login-card-body">
+    <div class="card-body login-card-body" style="padding:40px;">
       <p class="login-box-msg">
             <img src="{{asset('assets/images/logo_footer.svg')}}" alt="Give Away Tips" width="150"/>
         {{-- {{ __('Login') }} --}}
@@ -38,6 +38,7 @@
           type="password" 
           class="form-control @error('password') is-invalid @enderror" 
           name="password" 
+          placeholder="Password"
           required 
           autocomplete="current-password"
           />

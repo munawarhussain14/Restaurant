@@ -54,147 +54,6 @@
               ])
           @endcan
 
-          @can("read-mtc-minutes")
-          <li class="nav-item {{ (request()->segment(2) == 'minutes') ? 'menu-open' : '' }}">  
-            <a href="#" class="nav-link {{ (request()->segment(2) == 'minutes') ? 'active' : '' }}">
-              <i class="nav-icon fas fa-scroll"></i>
-              <p>
-                MTC Minutes
-                <i class="right fas fa-angle-left"></i>
-              </p>
-            </a>
-            
-            <ul class="nav nav-treeview">
-              @can("create-mtc-minutes")
-              <li class="nav-item">
-                <a href="{{route('admin.minutes.create')}}" class="nav-link {{ (request()->is('admin/minutes/create')) ? 'active' : '' }}">
-                  <i class="far fa-circle nav-icon"></i>
-                  <p>Add Minutes</p>
-                </a>
-              </li>
-              @endcan
-              @can("read-mtc-minutes")
-              <li class="nav-item">
-                <a href="{{route('admin.minutes.index')}}" class="nav-link {{ (request()->is('admin/minutes')) ? 'active' : '' }}">
-                  <i class="far fa-circle nav-icon"></i>
-                  <p>All Minutes</p>
-                </a>
-              </li>
-              @endcan
-            </ul>
-          </li>
-          @endcan
-          
-          @can("read-tenders")
-          <li class="nav-item {{ (request()->segment(2) == 'tenders') ? 'menu-open' : '' }}">
-            <a href="#" class="nav-link {{ (request()->segment(2) == 'tenders') ? 'active' : '' }}">
-              <i class="nav-icon fas fa-bullhorn"></i>
-              <p>
-                Tenders
-                <i class="right fas fa-angle-left"></i>
-              </p>
-            </a>
-
-            <ul class="nav nav-treeview">
-              @can("create-tenders")
-              <li class="nav-item">
-                <a href="{{route('admin.tenders.create')}}" class="nav-link {{ (request()->is('admin/tenders/create')) ? 'active' : '' }}">
-                  <i class="far fa-circle nav-icon"></i>
-                  <p>Add Tender</p>
-                </a>
-              </li>
-              @endcan
-              @can("read-tenders")
-              <li class="nav-item">
-                <a href="{{route('admin.tenders.index')}}" class="nav-link {{ (request()->is('admin/tenders')) ? 'active' : '' }}">
-                  <i class="far fa-circle nav-icon"></i>
-                  <p>All Tenders</p>
-                </a>
-              </li>
-              @endcan
-            </ul>
-          </li>
-          @endcan
-          @can("read-auctions")
-          @include("admin.layouts.partials.navItem",
-              [
-                "page"=>"Auctions",
-                "icon"=>"nav-icon fas fa-gavel",
-                "route"=>route('admin.auctions.index'),
-                "segment"=>"auctions"
-              ])
-          @endcan
-
-          @can("read-forms-and-templates")
-          @include("admin.layouts.partials.navItem",
-              [
-                "page"=>"Forms and Templates",
-                "icon"=>"nav-icon fas fa-file",
-                "route"=>route('admin.forms-and-templates.index'),
-                "segment"=>"forms-and-templates"
-              ])
-          @endcan
-       
-          @can("read-geological-reports")
-          @include("admin.layouts.partials.navItem",
-              [
-                "page"=>"Geological Reports",
-                "icon"=>"nav-icon fas fa-map",
-                "route"=>route('admin.geological-reports.index'),
-                "segment"=>"geological-reports"
-              ])
-          @endcan        
-
-          @can("read-notifications")
-          @include("admin.layouts.partials.navItem",
-              [
-                "page"=>"Notifications",
-                "icon"=>"nav-icon fas fa-bell",
-                "route"=>route('admin.notifications.index'),
-                "segment"=>"notifications"
-              ])
-          @endcan
-
-          @can("read-rules-and-policies")
-          @include("admin.layouts.partials.navItem",
-              [
-                "page"=>"Rules and Policies",
-                "icon"=>"nav-icon fas fa-file",
-                "route"=>route('admin.rules-and-policies.index'),
-                "segment"=>"rules-and-policies"
-              ])
-          @endcan
-
-          @can("read-announcements")
-          @include("admin.layouts.partials.navItem",
-              [
-                "page"=>"Announcements",
-                "icon"=>"nav-icon fas fa-bullhorn",
-                "route"=>route('admin.announcements.index'),
-                "segment"=>"announcements"
-              ])
-          @endcan
-
-          @can("read-test-types")
-          @include("admin.layouts.partials.navItem",
-              [
-                "page"=>"Test Type",
-                "icon"=>"nav-icon fas fa-vials",
-                "route"=>route('admin.test-types.index'),
-                "segment"=>"test-types"
-              ])
-          @endcan
-
-          @can("read-test-elements")
-          @include("admin.layouts.partials.navItem",
-              [
-                "page"=>"Test Elements",
-                "icon"=>"nav-icon fab fa-battle-net",
-                "route"=>route('admin.test-elements.index'),
-                "segment"=>"test-elements"
-              ])
-          @endcan
-
           @can("read-users")
           @include("admin.layouts.partials.navItem",
               [
@@ -243,6 +102,20 @@
             "segment"=>"setting"
           ])
           @endcan
+
+          <li class="nav-item">
+            <a href="{{ route('logout') }}" onclick="event.preventDefault();
+                                document.getElementById('logout-form').submit();" class="nav-link">
+              <i class="nav-icon fas fa-sign-out-alt"></i>
+              <p>
+                Logout
+              </p>
+            </a>
+            <form id="logout-form" action="{{ route('logout') }}" method="POST" class="d-none">
+              @csrf
+            </form>
+          </li>
+
 
         </ul>
       </nav>

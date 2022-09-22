@@ -1,6 +1,8 @@
 <?php
 
 use Illuminate\Support\Facades\Route;
+use App\Models\Restaurant;
+use Illuminate\Support\Facades\Storage;
 
 if (App::environment('production')) {
     URL::forceScheme('https');
@@ -40,7 +42,10 @@ Route::get('admin', function () {
 
 Auth::routes();
 
-Route::get('/restaurants/pdf/download/{restaurant_id}', [App\Http\Controllers\Admin\RestaurantController::class, 'download'])
+Route::get('/restaurants/pdf/download/{restaurant_id}', function($restauratn_id){
+    $row = Restaurant::find($restauratn_id);
+    return Storage::disk("public")->download($row->pdf_menu,Str::slug($row->name,"-")."_menu.pdf");
+})
     ->name('download.pdf');
 
 Route::middleware(['auth'])->prefix('admin')->name('admin.')->group(function(){
