@@ -7,9 +7,9 @@ use App\Models\Role;
 trait HasPermissionsTrait {
 
    public function givePermissionsTo(... $permissions) {
-
+    
     $permissions = $this->getAllPermissions($permissions);
-    dd($permissions);
+    
     if($permissions === null) {
       return $this;
     }
@@ -37,7 +37,7 @@ trait HasPermissionsTrait {
   }
 
   public function hasPermissionThroughRole($permission) {
-
+    
     foreach ($permission->roles as $role){
       if($this->roles->contains($role)) {
         return true;
@@ -74,7 +74,7 @@ trait HasPermissionsTrait {
 
   }
   protected function hasPermission($permission) {
-
+    
     return (bool) $this->permissions->where('slug', $permission->slug)->count();
   }
 

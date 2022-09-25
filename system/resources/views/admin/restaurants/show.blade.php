@@ -2,6 +2,7 @@
 
 @push("scripts")
 <script src="{{asset('assets/admin/plugins/qrcode/qrcode.min.js')}}"></script>
+<script src="https://cdn.jsdelivr.net/npm/pdfjs-dist@2.10.377/build/pdf.min.js"></script>
 {{-- https://www.cssscript.com/qr-code-generator-logo-title/ --}}
 <script type="text/javascript">
     $(document).ready(function(){
@@ -121,7 +122,12 @@
             <!-- /.card-body -->
             </div>
             <div class="card-footer">
-                <a href="{{route($params['route'].".edit",$parm)}}" class="btn btn-primary"><i class="fa fa-edit"></i></a>
+                <a href="{{route($params['route'].".edit",$parm)}}" class="btn btn-primary">
+                    <i class="fa fa-edit"></i>&nbsp;&nbsp;Edit Restaurant
+                </a>
+                <a href="{{route("admin.restaurant.waiters.create",["restaurant_id"=>$row->id])}}" class="btn btn-primary">
+                    <i class="fas fa-concierge-bell"></i>&nbsp;&nbsp;Add Waiter
+                </a>
             </div>
         </div>
     </div>

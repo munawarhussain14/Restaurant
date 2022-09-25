@@ -54,6 +54,16 @@
               ])
           @endcan
 
+          @can("read-waiters")
+          @include("admin.layouts.partials.navItem",
+          [
+            "page"=>"Waiters",
+            "icon"=>"nav-icon fas fa-concierge-bell",
+            "route"=>route('admin.waiters.index'),
+            "segment"=>"waiters"
+          ])
+          @endcan
+
           @can("read-users")
           @include("admin.layouts.partials.navItem",
               [
@@ -93,6 +103,7 @@
             "segment"=>"modules"
           ])
           @endcan
+
           @can("read-setting")
           @include("admin.layouts.partials.navItem",
           [

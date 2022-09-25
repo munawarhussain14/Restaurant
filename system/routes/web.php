@@ -46,9 +46,16 @@ Route::get('admin', function () {
 
 Auth::routes();
 
+Route::get('/restaurants/pdf/view/{restaurant_id}', function($restauratn_id){
+    $row = Restaurant::find($restauratn_id);
+    return view("admin.restaurants.viewPdf",compact("row"));
+})
+    ->name('download.pdf');
+
 Route::get('/restaurants/pdf/download/{restaurant_id}', function($restauratn_id){
     $row = Restaurant::find($restauratn_id);
-    return Storage::disk("public")->download($row->pdf_menu,Str::slug($row->name,"-")."_menu.pdf");
+      return view("admin.restaurants.viewPdf",compact("row"));
+    // return Storage::disk("public")->download($row->pdf_menu,Str::slug($row->name,"-")."_menu.pdf");
 })
     ->name('download.pdf');
 
@@ -79,12 +86,23 @@ Route::middleware(['auth'])->prefix('admin')->name('admin.')->group(function(){
     Route::resource(
         'restaurants', App\Http\Controllers\Admin\RestaurantController::class
     );
-
+    
     Route::get('/restaurants/pdf/{restaurant_id}', [App\Http\Controllers\Admin\RestaurantController::class, 'pdf'])
     ->name('restaurants.pdf');
-
+    
     Route::post('/restaurants/qrcode/{restaurant_id}', [App\Http\Controllers\Admin\RestaurantController::class, 'uploadQrcode'])
     ->name('restaurants.qrcode');
+    
+    
+    Route::resource(
+        'waiters', App\Http\Controllers\Admin\WaiterController::class
+    );
+
+    Route::get('/waiters/create/{restaurant_id}', [App\Http\Controllers\Admin\WaiterController::class, 'create'])
+    ->name('restaurant.waiters.create');
+
+    Route::get('/waiters/pdf/{waiter_id}', [App\Http\Controllers\Admin\WaiterController::class, 'pdf'])
+    ->name('waiter.pdf');
     
     Route::resource(
         'setting', App\Http\Controllers\Admin\SettingController::class
