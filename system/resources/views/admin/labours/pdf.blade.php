@@ -4,34 +4,57 @@
 <div class="body">
     <div class="border"></div>
     <div class="content">
-        <div>
-            {{-- <img src="{{asset("assets/images/pdf_bg.png")}}" /> --}}
-        </div>
-        <table width="380" style="margin: auto;" border="0">
-            <tr>
-                <td align="center" height="135">
-                    <img class="logo" src="{{Storage::url($row->restaurant->logo)}}" height="80"/>
-                </td>
-            </tr>
+        <table class="main-table" border="0">
             <tr>
                 <td align="center">
-                    <p style="font-size:15px; font-weight:400; margin-top:0;">
-                        Should you wish to show appriciation to <span class="special">{{ucwords($row->name)}}</span> in the<br>
-                    restaurant who worked hard to ensure you enjoyed your<br>
-                    food and drinks.
-                    </p>
-                    <p style="font-size:15px; font-weight:400; margin-bottom:0;">
-                        We now accept <span class="special">cashless</span> tips.
-                    </p>
+                   <img class="logo" src="{{Storage::url($row->logo)}}" width="100"/> 
                 </td>
             </tr>
             <tr>
                 <td>
                     <div class="qr-container">
+                        <p style="font-size:16px; margin:0; padding:8px 0;">
+                            SCAN TO VIEW<br>
+                        OUR MENU 
+                        </p>
                         <div class="qr">
-                            <img src="{{Storage::url($row->qrcode)}}" width="100"/>
+                            <img src="{{Storage::url($row->qrcode)}}" width="150"/>
                         </div> 
                     </div>
+                </td>
+            </tr>
+            <tr>
+                <td>
+                    <p>
+                        Use the camera on your phone to point at<br>
+                        the QR Code above to view our menu
+                    </p>
+                </td>
+            </tr>
+        </table>
+        <table class="main-table" style="width: 500px;">
+            <tr>
+                <td align="center">
+                    <p class="label-title" style="margin-top:12px;">Phone Number</p>
+                    <p class="p-content">
+                        {{$row->phone}}
+                    </p>
+                    <br>
+                    <p class="label-title">Liceria & CO.</p>
+                    <p class="p-content" style="min-height:30px;">
+                        {{$row->address}}
+                    </p>
+                </td>
+            </tr>
+            <tr>
+                <td align="center">
+                   <div class="line">
+                    </div> 
+                </td>
+            </tr>
+            <tr>
+                <td align="center">
+                    <img src="{{asset('assets/images/power_by.jpg')}}" width="120"/>
                 </td>
             </tr>
         </table>
@@ -76,32 +99,28 @@
     }
 
     .logo{
-        margin:15mm 10mm 5mm 10mm;
+        margin:10mm;
     }
-
     .main-table{
         margin:auto;
-        width: 280px;
+        width: 300px;
     }
 
     .qr-container{
         padding: 1mm 7mm 4mm 7mm;
+        background-color:{{$row->primary_color}};
+        color:white;
         text-align: center;
         border-radius: 15px;
-        width: 48mm;
-        margin: auto;
     }
-
-    .qr{}
 
     .qr img{
         width: 100%;
         background: white;
         display: inline;
         margin: auto;
-        padding:2mm;
-        border: 1px solid black;
-        border-radius: 4px;
+        padding:3mm;
+        border-radius: 10px;
     }
 
     .border{
@@ -110,6 +129,7 @@
     }
 
     .content{
+        background:white;
         width:520px;
         height:750px;
         margin: auto;
@@ -126,18 +146,7 @@
     body{
         margin: 0;
         padding: 0;
-        background-size:100% 100%;
-        background-repeat: no-repeat;
-        background-image:url({{asset("assets/images/pdf_bg.png")}});
-        
     }
-
-    .special{
-        color: #437eb6;
-        font-size:16px;
-        font-weight:bold;
-    }
-
     @page { margin:0px; }
 </style>
 @endpush

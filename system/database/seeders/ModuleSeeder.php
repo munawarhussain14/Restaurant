@@ -43,8 +43,33 @@ class ModuleSeeder extends Seeder
             ],
             [
                 "id"=>6,
-                'name' => "Restaurants",
-                'slug' => 'restaurants',
+                'name' => "Labours",
+                'slug' => 'labours',
+            ],
+            [
+                "id"=>7,
+                'name' => "Scholarships",
+                'slug' => 'scholarships',
+            ],
+            [
+                "id"=>8,
+                'name' => "Skills Development",
+                'slug' => 'skills-development',
+            ],
+            [
+                "id"=>9,
+                'name' => "Grants",
+                'slug' => 'grants',
+            ],
+            [
+                "id"=>10,
+                'name' => "Scheme Types",
+                'slug' => 'scheme-types',
+            ],
+            [
+                "id"=>11,
+                'name' => "Schemes",
+                'slug' => 'schemes',
             ]
         ]);
     }

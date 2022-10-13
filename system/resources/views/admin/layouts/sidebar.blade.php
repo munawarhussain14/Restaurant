@@ -2,7 +2,8 @@
   <aside class="main-sidebar sidebar-dark-primary elevation-4">
     <!-- Brand Logo -->
     <a href="{{route("admin.dashboard")}}" class="brand-link text-center">
-      <img src="{{asset('assets/images/logo.svg')}}" alt="Give Away Tips" width="150">
+      <h4>CMLW Portal</h4>
+      {{-- <img src="{{asset('assets/images/logo.svg')}}" alt="Give Away Tips" width="150"> --}}
       {{-- <span class="brand-text font-weight-light">Give Away Tips</span> --}}
     </a>
 
@@ -44,13 +45,13 @@
             </a>
           </li>
 
-          @can("read-restaurants")
+          @can("read-labours")
           @include("admin.layouts.partials.navItem",
               [
-                "page"=>"Restaurants",
-                "icon"=>"nav-icon fas fa-hotel",
-                "route"=>route('admin.restaurants.index'),
-                "segment"=>"restaurants"
+                "page"=>"Labours",
+                "icon"=>"nav-icon fas fa-users",
+                "route"=>route('admin.labours.index'),
+                "segment"=>"labours"
               ])
           @endcan
 

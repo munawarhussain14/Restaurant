@@ -11,10 +11,12 @@ class DatatableHelper{
     private $actionButtons;
     private $custom_btn = [];
     private $btn = "";
+    private $primaryKey;
 
-    function __construct($data,$params) {
+    function __construct($data,$params, $primaryKey = "id") {
         $this->data = $data;
         $this->params = $params;
+        $this->primaryKey = $primaryKey;
     }
 
     public function table_response(){
@@ -27,7 +29,7 @@ class DatatableHelper{
         ->make(true);
     }
     
-    public function custom_response($rawColumns = ['action']){
+    function custom_response($rawColumns = ['action']){
         return Datatables::of($this->data)
         ->addIndexColumn()
         ->addColumn('action',function($row){
@@ -38,12 +40,12 @@ class DatatableHelper{
 
     function action($row){
         $specifier = $this->params["model"];
-        $parm[$specifier] = $row['id'];
+        $parm[$specifier] = $row[$this->primaryKey];
         $this->btn = "";
         if(Auth::user()->can("read-".$this->params["module_name"]))
         {
             foreach($this->custom_btn as $button){
-                $button['url'] = str_replace("{id}",$row["id"],$button['url']);
+                $button['url'] = str_replace("{id}",$row[$this->primaryKey],$button['url']);
                 $this->btn .= "<a href='".$button['url']."' class='action-btn btn btn-primary btn-sm'><i class='".$button['icon']."'></i> ".$button['title']."</a>&nbsp;";
             }
         }
@@ -60,7 +62,7 @@ class DatatableHelper{
 
         if(Auth::user()->can("delete-".$this->params["module_name"]))
         {
-            $this->btn .= "<a href='javascript:void(0)' onClick='onRemove(".$row['id'].")' class='action-btn delete btn btn-danger btn-sm'><i class='fa fa-trash'></i> Delete</a>";
+            $this->btn .= "<a href='javascript:void(0)' onClick='onRemove(".$row[$this->primaryKey].")' class='action-btn delete btn btn-danger btn-sm'><i class='fa fa-trash'></i> Delete</a>";
         }
         return $this->btn;
     }

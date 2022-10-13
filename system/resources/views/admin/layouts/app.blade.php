@@ -31,7 +31,6 @@
 
   <!-- Content Wrapper. Contains page content -->
   <div class="content-wrapper">
-    
     @if(isset($params["plural_title"]))
     <!-- Content Header (Page header) -->
     <section class="content-header">

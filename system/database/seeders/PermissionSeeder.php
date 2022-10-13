@@ -138,27 +138,147 @@ class PermissionSeeder extends Seeder
             ],
             [
                 'id' => 21,
-                'name' => "Create Restaurants",
-                'slug' => 'create-restaurants',
+                'name' => "Create Labours",
+                'slug' => 'create-labours',
                 'module_id' => 6
             ],
             [
                 'id' => 22,
-                'name' => "Update Restaurants",
-                'slug' => 'update-restaurants',
+                'name' => "Update Labours",
+                'slug' => 'update-labours',
                 'module_id' => 6
             ],
             [
                 'id' => 23,
-                'name' => "Read Restaurants",
-                'slug' => 'read-restaurants',
+                'name' => "Read Labours",
+                'slug' => 'read-labours',
                 'module_id' => 6
             ],
             [
                 'id' => 24,
-                'name' => "Delete Restaurants",
-                'slug' => 'delete-restaurants',
+                'name' => "Delete Labours",
+                'slug' => 'delete-labours',
                 'module_id' => 6
+            ],
+            [
+                'id' => 25,
+                'name' => "Create Scholarships",
+                'slug' => 'create-scholarships',
+                'module_id' => 7
+            ],
+            [
+                'id' => 26,
+                'name' => "Update Scholarships",
+                'slug' => 'update-scholarships',
+                'module_id' => 7
+            ],
+            [
+                'id' => 27,
+                'name' => "Read Scholarships",
+                'slug' => 'read-scholarships',
+                'module_id' => 7
+            ],
+            [
+                'id' => 28,
+                'name' => "Delete Scholarships",
+                'slug' => 'delete-scholarships',
+                'module_id' => 7
+            ],
+            [
+                'id' => 29,
+                'name' => "Create Skills Devlopment",
+                'slug' => 'create-skills-devlopment',
+                'module_id' => 8
+            ],
+            [
+                'id' => 30,
+                'name' => "Update Skills Devlopment",
+                'slug' => 'update-skills-devlopment',
+                'module_id' => 8
+            ],
+            [
+                'id' => 31,
+                'name' => "Read Skills Devlopment",
+                'slug' => 'read-skills-devlopment',
+                'module_id' => 8
+            ],
+            [
+                'id' => 32,
+                'name' => "Delete Skills Devlopment",
+                'slug' => 'delete-skills-devlopment',
+                'module_id' => 8
+            ],
+            [
+                'id' => 33,
+                'name' => "Create Grants",
+                'slug' => 'create-grants',
+                'module_id' => 9
+            ],
+            [
+                'id' => 34,
+                'name' => "Update Grants",
+                'slug' => 'update-grants',
+                'module_id' => 9
+            ],
+            [
+                'id' => 35,
+                'name' => "Read Grants",
+                'slug' => 'read-grants',
+                'module_id' => 9
+            ],
+            [
+                'id' => 36,
+                'name' => "Delete Grants",
+                'slug' => 'delete-grants',
+                'module_id' => 9
+            ],
+            [
+                'id' => 37,
+                'name' => "Create Scheme Types",
+                'slug' => 'create-scheme-types',
+                'module_id' => 10
+            ],
+            [
+                'id' => 38,
+                'name' => "Update Scheme Types",
+                'slug' => 'update-scheme-types',
+                'module_id' => 10
+            ],
+            [
+                'id' => 39,
+                'name' => "Read Scheme Types",
+                'slug' => 'read-scheme-types',
+                'module_id' => 10
+            ],
+            [
+                'id' => 40,
+                'name' => "Delete Scheme Types",
+                'slug' => 'delete-scheme-types',
+                'module_id' => 10
+            ],
+            [
+                'id' => 41,
+                'name' => "Create Schemes",
+                'slug' => 'create-schemes',
+                'module_id' => 11
+            ],
+            [
+                'id' => 42,
+                'name' => "Update Schemes",
+                'slug' => 'update-schemes',
+                'module_id' => 11
+            ],
+            [
+                'id' => 43,
+                'name' => "Read Schemes",
+                'slug' => 'read-schemes',
+                'module_id' => 11
+            ],
+            [
+                'id' => 44,
+                'name' => "Delete Schemes",
+                'slug' => 'delete-schemes',
+                'module_id' => 11
             ],
         ]);
     }

@@ -13,12 +13,11 @@
     <script src="{{asset('assets/admin/plugins/datatables-responsive/js/responsive.bootstrap4.min.js')}}"></script>
 
     <script type="text/javascript">
-
     var table = $('#data-table').DataTable({
             processing: true,
             serverSide: true,
             responsive: true,
-            ajax: "{{ route($params['route'].'.index') }}",
+            ajax: "{{ (isset($params["custom_url"]))?$params["custom_url"]:route($params['route'].'.index') }}",
             columns: 
             [
             @foreach($params["columns"] as $values)
@@ -66,7 +65,7 @@
         @if(isset($params["module_name"]))
             @can("create-".$params["module_name"])
             <div class="card-header-actions">
-                <a href="{{route($params['route'].".create")}}" class="card-header-action"><i class="fa fa-plus"></i> Create {{$params['singular_title']}}</a>
+                <a href="{{(isset($params["custom_create_url"]))?$params["custom_create_url"]:route($params['route'].".create")}}" class="card-header-action"><i class="fa fa-plus"></i> Create {{$params['singular_title']}}</a>
             </div>
             @endcan
         @endif

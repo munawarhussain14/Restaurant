@@ -24,4 +24,8 @@ class AdminController extends Controller
             return $next($request);
         });
     }
+
+    public function setTitle($title){
+        $module = $title;
+    }
 }

@@ -5,7 +5,7 @@ namespace App\Http\Controllers\Admin;
 use App\Http\Controllers\Controller;
 use Illuminate\Http\Request;
 use App\Models\User;
-use App\Models\Restaurant;
+use App\Models\Labour;
 
 class DashboardController extends Controller
 {
@@ -32,8 +32,8 @@ class DashboardController extends Controller
     public function index()
     {
         $users = User::all();
-        $restaurants = Restaurant::all();
+        $labours = Labour::all();
         $params = $this->params;
-        return view('admin.dashboard',compact("params","users","restaurants"));
+        return view('admin.dashboard',compact("params","labours"));
     }
 }

@@ -122,11 +122,15 @@
             <!-- /.card-body -->
             </div>
             <div class="card-footer">
-                <a href="{{route($params['route'].".edit",$parm)}}" class="btn btn-primary">
+                <a href="{{route($params['route'].".edit",$parm)}}" class="btn btn-warning">
                     <i class="fa fa-edit"></i>&nbsp;&nbsp;Edit Restaurant
                 </a>
                 <a href="{{route("admin.restaurant.waiters.create",["restaurant_id"=>$row->id])}}" class="btn btn-primary">
                     <i class="fas fa-concierge-bell"></i>&nbsp;&nbsp;Add Waiter
+                </a>
+                </a>
+                <a href="{{route("admin.restaurant.waiters",["restaurant_id"=>$row->id])}}" class="btn btn-success">
+                    <i class="fas fa-eye"></i>&nbsp;&nbsp;View Waiters
                 </a>
             </div>
         </div>
